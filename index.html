@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#245edb">
+  <meta name="description" content="Kelvin Rutatina builds local-first AI systems, security automation, and practical infrastructure.">
+  <meta property="og:title" content="Kelvin XP — not a toy">
+  <meta property="og:description" content="A working Windows XP-style portfolio for Kelvin Rutatina.">
+  <title>Kelvin XP — not a toy</title>
+  <link rel="icon" href="assets/runtime/icons/my-computer.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Person","name":"Kelvin Rutatina","url":"https://github.com/Kevinscki","sameAs":["https://github.com/Kevinscki","https://medium.com/@kelvinrutatina","https://linkedin.com/in/kelvinrutatina"],"knowsAbout":["Local AI infrastructure","Cybersecurity","Security automation","LLM security"]}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#desktop-icons">Skip to desktop icons</a>
+
+  <div id="boot-screen" aria-label="Starting Kelvin XP">
+    <div class="boot-wordmark"><span>Kelvin</span><strong>xp</strong></div>
+    <p>not a toy</p>
+    <div class="boot-track" aria-hidden="true"><i></i><i></i><i></i></div>
+  </div>
+
+  <main id="desktop" aria-label="Kelvin XP desktop">
+    <header class="desktop-intro">
+      <p class="eyebrow">C:\KELVIN\NOW</p>
+      <h1>Kelvin Rutatina</h1>
+      <p>Local-first AI infrastructure, security automation, and systems that remain useful outside the demo.</p>
+      <button type="button" data-open="projects">Open current work</button>
+    </header>
+
+    <section id="desktop-icons" class="desktop-icons" aria-label="Desktop applications"></section>
+    <div id="window-layer" aria-live="polite"></div>
+
+    <aside id="clippy" aria-label="Clippy portfolio assistant">
+      <section id="clippy-balloon" class="clippy-balloon" aria-live="polite">
+        <button id="clippy-close" class="clippy-close" type="button" aria-label="Hide message">×</button>
+        <p id="clippy-message"></p>
+        <div id="clippy-links" class="clippy-links"></div>
+      </section>
+      <button id="clippy-character" class="clippy-character" type="button" aria-label="Show Clippy message" aria-expanded="true">
+        <picture>
+          <source media="(prefers-reduced-motion: reduce)" srcset="assets/runtime/clippy/still.png">
+          <img id="clippy-image" src="assets/runtime/clippy/wakeup.webp" alt="Clippy, the animated portfolio assistant" width="240" height="240">
+        </picture>
+      </button>
+    </aside>
+
+    <nav class="taskbar" aria-label="Windows taskbar">
+      <button id="start-button" type="button" aria-expanded="false"><span class="windows-mark" aria-hidden="true">❖</span><b>start</b></button>
+      <div id="task-buttons" aria-label="Open windows"></div>
+      <div class="tray"><span aria-hidden="true">🔊</span><time id="clock">00:00</time></div>
+    </nav>
+
+    <aside id="start-menu" aria-hidden="true">
+      <header><span class="avatar">KR</span><strong>Kelvin Rutatina</strong></header>
+      <div class="start-menu-body">
+        <div id="start-apps" class="start-apps"></div>
+        <div class="start-places">
+          <button type="button" data-open="computer">My Computer</button>
+          <button type="button" data-open="cv">My Documents</button>
+          <button type="button" data-open="socials">My Network Places</button>
+          <button type="button" data-open="terminal">Run...</button>
+        </div>
+      </div>
+      <footer><span>Arusha, Tanzania</span><button id="logoff" type="button">Log Off</button></footer>
+    </aside>
+  </main>
+
+  <template id="window-template">
+    <section class="window" role="dialog" aria-modal="false">
+      <header class="titlebar">
+        <div class="titlebar-label"><img class="title-icon" alt=""><strong class="window-title"></strong></div>
+        <div class="window-controls">
+          <button type="button" data-action="minimize" aria-label="Minimize">_</button>
+          <button type="button" data-action="maximize" aria-label="Maximize">□</button>
+          <button type="button" data-action="close" aria-label="Close">×</button>
+        </div>
+      </header>
+      <div class="menubar" aria-hidden="true"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
+      <div class="toolbar" aria-hidden="true"><button>←</button><button>→</button><button>↑</button><span></span><button>Search</button><button>Folders</button></div>
+      <div class="addressbar"><label>Address</label><div class="address-value"></div><button class="address-go" type="button">Go</button></div>
+      <div class="window-content"></div>
+      <footer class="statusbar"><span class="status-text"></span><span>Local intranet</span></footer>
+    </section>
+  </template>
+
+  <noscript>
+    <section class="noscript-content">
+      <h1>Kelvin Rutatina</h1>
+      <p>Cybersecurity engineer working across local AI infrastructure, LLM security, automation, and Linux systems.</p>
+      <p><a href="https://github.com/Kevinscki">GitHub</a> · <a href="https://medium.com/@kelvinrutatina">Medium</a> · <a href="downloads/Kelvin_Rutatina_CV.md">CV</a></p>
+    </section>
+  </noscript>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
