@@ -95,7 +95,7 @@ const CLIPPY_MESSAGES = {
   },
   academics: {
     text: 'It looks like you’re checking the academic record. The degree gives the foundation; the labs, Nullcon work, and CTF activity show how it was applied.',
-    animation: 'read',
+    animation: 'idle',
     links: [{ label: 'CTFGuide leaderboards', href: links.ctfguide }, { label: 'CV', app: 'cv' }]
   },
   writing: {
