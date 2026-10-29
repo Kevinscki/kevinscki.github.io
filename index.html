@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#245edb">
   <meta name="description" content="Kelvin Rutatina builds local-first AI systems, security automation, and practical infrastructure.">
-  <meta property="og:title" content="Kelvin XP — not a toy">
-  <meta property="og:description" content="A working Windows XP-style portfolio for Kelvin Rutatina.">
-  <title>Kelvin XP — not a toy</title>
+  <meta property="og:title" content="Kelvin's Portifolio Computer">
+  <meta property="og:description" content="Kelvin Rutatina's working Windows XP-style portfolio computer.">
+  <title>Kelvin's Portifolio Computer</title>
   <link rel="icon" href="assets/runtime/icons/my-computer.png">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=10">
   <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Person","name":"Kelvin Rutatina","url":"https://github.com/Kevinscki","sameAs":["https://github.com/Kevinscki","https://medium.com/@kelvinrutatina","https://linkedin.com/in/kelvinrutatina"],"knowsAbout":["Local AI infrastructure","Cybersecurity","Security automation","LLM security"]}
   </script>
@@ -17,20 +17,13 @@
 <body>
   <a class="skip-link" href="#desktop-icons">Skip to desktop icons</a>
 
-  <div id="boot-screen" aria-label="Starting Kelvin XP">
-    <div class="boot-wordmark"><span>Kelvin</span><strong>xp</strong></div>
-    <p>not a toy</p>
-    <div class="boot-track" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div id="boot-screen" aria-label="Starting portifolio XP">
+    <img class="boot-logo" src="assets/runtime/icons/WINDOW icon.png" alt="" width="118" height="118">
+    <div class="boot-wordmark"><span>portifolio</span><sup>xp</sup></div>
+    <div class="boot-track" aria-hidden="true"><div class="boot-blocks"><i></i><i></i><i></i></div></div>
   </div>
 
-  <main id="desktop" aria-label="Kelvin XP desktop">
-    <header class="desktop-intro">
-      <p class="eyebrow">C:\KELVIN\NOW</p>
-      <h1>Kelvin Rutatina</h1>
-      <p>Local-first AI infrastructure, security automation, and systems that remain useful outside the demo.</p>
-      <button type="button" data-open="projects">Open current work</button>
-    </header>
-
+  <main id="desktop" aria-label="Kelvin's Portifolio Computer desktop">
     <section id="desktop-icons" class="desktop-icons" aria-label="Desktop applications"></section>
     <div id="window-layer" aria-live="polite"></div>
 
@@ -49,7 +42,7 @@
     </aside>
 
     <nav class="taskbar" aria-label="Windows taskbar">
-      <button id="start-button" type="button" aria-expanded="false"><span class="windows-mark" aria-hidden="true">❖</span><b>start</b></button>
+      <button id="start-button" type="button" aria-label="Start" aria-expanded="false"><img src="assets/runtime/icons/start-button.png?v=1" alt=""></button>
       <div id="task-buttons" aria-label="Open windows"></div>
       <div class="tray"><span aria-hidden="true">🔊</span><time id="clock">00:00</time></div>
     </nav>
@@ -59,10 +52,10 @@
       <div class="start-menu-body">
         <div id="start-apps" class="start-apps"></div>
         <div class="start-places">
-          <button type="button" data-open="computer">My Computer</button>
-          <button type="button" data-open="cv">My Documents</button>
-          <button type="button" data-open="socials">My Network Places</button>
-          <button type="button" data-open="terminal">Run...</button>
+          <a href="#computer" data-open="computer">My Computer</a>
+          <a href="#cv" data-open="cv">My Documents</a>
+          <a href="#socials" data-open="socials">My Network Places</a>
+          <a href="#terminal" data-open="terminal">Run...</a>
         </div>
       </div>
       <footer><span>Arusha, Tanzania</span><button id="logoff" type="button">Log Off</button></footer>
@@ -79,9 +72,27 @@
           <button type="button" data-action="close" aria-label="Close">×</button>
         </div>
       </header>
-      <div class="menubar" aria-hidden="true"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
-      <div class="toolbar" aria-hidden="true"><button>←</button><button>→</button><button>↑</button><span></span><button>Search</button><button>Folders</button></div>
-      <div class="addressbar"><label>Address</label><div class="address-value"></div><button class="address-go" type="button">Go</button></div>
+      <nav class="menubar" aria-label="Window menu">
+        <div class="menu-root">
+          <button class="menu-trigger" type="button" aria-expanded="false">File</button>
+          <div class="menu-popup">
+            <div class="submenu-root" tabindex="0"><span>Go To</span><span aria-hidden="true">▶</span>
+              <div class="submenu-popup">
+                <button type="button" data-open="computer">C:\</button>
+                <button type="button" data-open="projects">Projects</button>
+                <button type="button" data-open="academics">Academics</button>
+                <button type="button" data-open="writing">Write-Ups</button>
+                <button type="button" data-open="socials">Socials</button>
+                <button type="button" data-open="cv">CV</button>
+                <button type="button" data-open="terminal">Command Prompt</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button">Edit</button><button type="button">View</button><button type="button">Favorites</button><button type="button">Tools</button><button type="button">Help</button>
+      </nav>
+      <div class="toolbar"><button class="nav-back" type="button" aria-label="Back"><b aria-hidden="true">←</b> Back <small aria-hidden="true">▼</small></button><button class="nav-forward" type="button" aria-label="Forward">→</button><button class="nav-up" type="button" aria-label="Up one level">↑</button><i aria-hidden="true"></i><button class="nav-search" type="button"><b aria-hidden="true">⌕</b> Search</button><button class="nav-folders" type="button"><b aria-hidden="true">▤</b> Folders</button></div>
+      <form class="addressbar" autocomplete="off"><label>Address</label><input class="address-value" aria-label="Location" spellcheck="false"><button class="address-go" type="submit">Go</button></form>
       <div class="window-content"></div>
       <footer class="statusbar"><span class="status-text"></span><span>Local intranet</span></footer>
     </section>
@@ -91,10 +102,10 @@
     <section class="noscript-content">
       <h1>Kelvin Rutatina</h1>
       <p>Cybersecurity engineer working across local AI infrastructure, LLM security, automation, and Linux systems.</p>
-      <p><a href="https://github.com/Kevinscki">GitHub</a> · <a href="https://medium.com/@kelvinrutatina">Medium</a> · <a href="downloads/Kelvin_Rutatina_CV.md">CV</a></p>
+      <p><a href="https://github.com/Kevinscki">GitHub</a> · <a href="https://medium.com/@kelvinrutatina">Medium</a> · <a href="downloads/Kelvin_Rutatina_CV.pdf">CV (PDF)</a></p>
     </section>
   </noscript>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 </html>

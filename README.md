@@ -1,4 +1,4 @@
-# Kelvin XP
+# Kelvin Rutatina Portfolio
 
 Kelvin Rutatina's portfolio as a usable Windows XP-style desktop.
 
@@ -15,4 +15,3 @@ Then open <http://127.0.0.1:4173/>.
 ## Public URL
 
 <https://kevinscki.github.io/>
-

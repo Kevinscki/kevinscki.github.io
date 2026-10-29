@@ -4,7 +4,7 @@
   --xp-green: #38a628;
   --xp-cream: #ece9d8;
   --xp-line: #aca899;
-  --taskbar-height: 42px;
+  --taskbar-height: 39px;
   --window-shadow: 0 15px 42px rgba(0, 24, 82, .42);
 }
 
@@ -33,14 +33,18 @@ a { color: #124aa0; }
   color: #fff;
   transition: opacity .42s ease;
 }
-.boot-wordmark { font: 50px/1 Arial, sans-serif; letter-spacing: -3px; }
-.boot-wordmark strong { margin-left: 5px; color: #f26422; font-size: 27px; font-style: italic; }
-#boot-screen p { margin: 14px 0 24px; color: #aaa; letter-spacing: .18em; text-transform: uppercase; }
-.boot-track { display: flex; width: 180px; height: 16px; padding: 2px; gap: 3px; overflow: hidden; border: 2px solid #788393; border-radius: 4px; }
-.boot-track i { width: 26px; flex: none; background: linear-gradient(90deg, #164ac8, #5590ff); animation: boot 1.05s linear infinite; }
-.boot-track i:nth-child(2) { animation-delay: .12s; }
-.boot-track i:nth-child(3) { animation-delay: .24s; }
-@keyframes boot { from { transform: translateX(-95px); } to { transform: translateX(180px); } }
+.boot-logo { width: 112px; height: 112px; margin-bottom: 4px; object-fit: contain; filter: drop-shadow(0 0 9px rgba(255, 255, 255, .11)); }
+.boot-wordmark { margin-bottom: 28px; font: 50px/1 "Trebuchet MS", Arial, sans-serif; letter-spacing: -3px; }
+.boot-wordmark sup { margin-left: 6px; color: #f26422; font: italic 700 23px/1 Arial, sans-serif; letter-spacing: -1px; }
+.boot-track { width: 164px; height: 17px; padding: 3px; overflow: hidden; border: 2px solid #7a8290; border-radius: 5px; background: #080808; box-shadow: inset 0 0 0 1px #151922; }
+.boot-blocks { display: flex; width: max-content; gap: 3px; animation: boot 1.2s linear infinite; }
+.boot-track i { width: 23px; height: 7px; flex: none; border-radius: 1px; background: linear-gradient(90deg, #173aa5, #5d8fff 55%, #1743b8); box-shadow: 0 0 3px #2563df; }
+@keyframes boot {
+  0% { transform: translateX(-74px); }
+  14% { transform: translateX(5px); }
+  82% { transform: translateX(82px); }
+  100% { transform: translateX(164px); }
+}
 
 #desktop {
   position: relative;
@@ -49,24 +53,6 @@ a { color: #124aa0; }
   overflow: hidden;
   background: #4aa2e9 url("../assets/runtime/wallpapers/bliss.png") center 44% / cover no-repeat;
 }
-.desktop-intro {
-  position: absolute;
-  top: 9vh;
-  right: 5vw;
-  width: min(430px, 43vw);
-  padding: 22px 25px;
-  color: #fff;
-  background: linear-gradient(120deg, rgba(4, 54, 131, .88), rgba(5, 104, 175, .67));
-  border: 1px solid rgba(255, 255, 255, .75);
-  border-radius: 6px;
-  box-shadow: var(--window-shadow);
-  text-shadow: 0 1px #00356f;
-}
-.desktop-intro .eyebrow { margin: 0 0 7px; font: bold 11px "Courier New", monospace; letter-spacing: .13em; }
-.desktop-intro h1 { margin: 0 0 7px; font-size: clamp(27px, 3vw, 39px); letter-spacing: -1px; }
-.desktop-intro p:not(.eyebrow) { margin: 0; line-height: 1.55; }
-.desktop-intro button { margin-top: 17px; padding: 8px 12px; border: 1px solid #174381; border-radius: 3px; background: linear-gradient(#fff, #d9e7f8); color: #174381; font-weight: bold; box-shadow: 0 2px 4px rgba(0, 30, 90, .55); cursor: pointer; }
-
 .desktop-icons {
   display: grid;
   grid-auto-flow: column;
@@ -77,6 +63,8 @@ a { color: #124aa0; }
   padding: 16px 12px;
   gap: 2px 4px;
 }
+.desktop-icons, .desktop-icon, .desktop-selection { user-select: none; -webkit-user-select: none; }
+.desktop-icon img { -webkit-user-drag: none; }
 .desktop-icon {
   width: 92px;
   min-height: 88px;
@@ -93,8 +81,10 @@ a { color: #124aa0; }
   cursor: default;
 }
 .desktop-icon:hover, .desktop-icon:focus-visible { outline: 1px dotted #fff; background: rgba(30, 79, 173, .56); }
+.desktop-icon.selected { outline: 1px dotted #fff; background: rgba(24, 92, 196, .58); }
 .desktop-icon img { width: 48px; height: 48px; object-fit: contain; image-rendering: auto; filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, .42)); }
 .desktop-icon span { max-width: 88px; line-height: 1.2; text-align: center; }
+.desktop-selection { position: absolute; z-index: 12; border: 1px solid rgba(20, 92, 205, .95); background: rgba(46, 125, 231, .28); pointer-events: none; }
 
 .taskbar {
   position: fixed;
@@ -108,24 +98,21 @@ a { color: #124aa0; }
   box-shadow: inset 0 2px #5d8ef0;
 }
 #start-button {
-  min-width: 111px;
-  padding: 0 20px 0 10px;
+  width: 129px;
+  min-width: 129px;
+  height: 39px;
+  align-self: flex-end;
+  padding: 0;
+  overflow: hidden;
   border: 0;
-  border-radius: 0 14px 14px 0;
-  background: linear-gradient(#67c85a, #319e28 19%, #21851a 84%, #176a12);
-  box-shadow: inset 0 2px #9be08d, inset -2px 0 #155a16;
-  color: #fff;
-  font-size: 18px;
-  font-style: italic;
-  text-shadow: 1px 1px #185914;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  border-radius: 0;
+  background: transparent;
   cursor: pointer;
 }
-#start-button.active { filter: brightness(.78); }
-.windows-mark { font-size: 23px; transform: rotate(8deg); }
+#start-button img { display: block; width: 129px; height: 39px; max-width: none; pointer-events: none; }
+#start-button:hover, #start-button:focus-visible { outline: none; }
+#start-button:hover img, #start-button:focus-visible img { filter: brightness(1.08); }
+#start-button.active img, #start-button:active img { filter: brightness(.78); transform: translateY(1px); }
 #task-buttons { display: flex; flex: 1; min-width: 0; gap: 3px; padding: 4px 6px; }
 .task-button {
   min-width: 72px;
@@ -149,9 +136,9 @@ a { color: #124aa0; }
 #start-menu {
   display: none;
   position: fixed;
-  z-index: 8999;
+  z-index: 9001;
   left: 0;
-  bottom: var(--taskbar-height);
+  bottom: calc(var(--taskbar-height) - 3px);
   width: 430px;
   max-width: 96vw;
   overflow: hidden;
@@ -166,7 +153,7 @@ a { color: #124aa0; }
 .start-menu-body { display: grid; grid-template-columns: 1fr 1fr; min-height: 300px; }
 .start-menu-body > div { padding: 8px; }
 .start-places { border-left: 1px solid #9db9dd; background: #d3e5fa; }
-.start-app, .start-places button {
+.start-app, .start-places a {
   width: 100%;
   min-height: 48px;
   padding: 7px;
@@ -180,7 +167,10 @@ a { color: #124aa0; }
   text-align: left;
   cursor: pointer;
 }
-.start-app:hover, .start-places button:hover, .start-app:focus-visible, .start-places button:focus-visible { background: #2f73d4; color: #fff; outline: none; }
+.start-places a { min-height: 36px; color: #174b90; text-decoration: underline; text-underline-offset: 2px; }
+.start-app:hover, .start-app:focus-visible { background: #2f73d4; color: #fff; outline: none; }
+.start-places a:hover { background: transparent; color: #8b2c14; text-decoration-thickness: 2px; }
+.start-places a:focus-visible { background: transparent; color: #174b90; outline: 1px dotted #174b90; outline-offset: -3px; }
 .start-app img { width: 36px; height: 36px; object-fit: contain; }
 .start-app small { color: inherit; opacity: .78; }
 #start-menu > footer { height: 42px; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; background: linear-gradient(#3c85e6, #1764c7); color: #fff; }
@@ -212,14 +202,41 @@ a { color: #124aa0; }
 .title-icon { width: 20px; height: 20px; object-fit: contain; }
 .window-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .window-controls { display: flex; gap: 3px; }
-.window-controls button { width: 24px; height: 23px; padding: 0; border: 1px solid #fff; border-radius: 3px; background: linear-gradient(135deg, #5ba5f3, #1d61d0); box-shadow: inset 1px 1px rgba(255, 255, 255, .45); color: #fff; font: bold 15px Arial, sans-serif; cursor: pointer; }
-.window-controls button[data-action="close"] { background: linear-gradient(135deg, #f08c78, #bd270d); }
-.menubar { height: 25px; flex: none; display: flex; align-items: center; gap: 18px; padding: 0 9px; border-bottom: 1px solid var(--xp-line); }
-.toolbar { height: 38px; flex: none; display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-bottom: 1px solid var(--xp-line); }
-.toolbar button { height: 28px; padding: 2px 8px; border: 1px solid transparent; background: transparent; }
-.toolbar span { width: 1px; height: 25px; margin: 0 4px; background: #aaa; }
+.window-controls button { position: relative; width: 24px; height: 23px; padding: 0; border: 1px solid #fff; border-radius: 3px; background: linear-gradient(135deg, #72adf1 0, #2365cf 48%, #0d4dbe 100%); box-shadow: inset 1px 1px rgba(255, 255, 255, .7), inset -1px -1px rgba(0, 33, 120, .65); color: transparent; font-size: 0; cursor: pointer; }
+.window-controls button::before, .window-controls button::after { content: ""; position: absolute; display: block; }
+.window-controls button[data-action="minimize"]::before { right: 5px; bottom: 5px; left: 5px; height: 2px; background: #fff; box-shadow: 0 1px #16418c; }
+.window-controls button[data-action="maximize"]::before { inset: 5px; border: 2px solid #fff; box-shadow: 0 1px #16418c; }
+.window-controls button[data-action="maximize"]::after { top: 6px; right: 6px; left: 6px; height: 2px; background: #fff; }
+.window-controls button[data-action="close"] { background: linear-gradient(135deg, #f49a83 0, #d84d2c 45%, #aa210d 100%); }
+.window-controls button[data-action="close"]::before, .window-controls button[data-action="close"]::after { top: 10px; left: 4px; width: 15px; height: 2px; background: #fff; box-shadow: 0 1px #7b190c; transform: rotate(45deg); }
+.window-controls button[data-action="close"]::after { transform: rotate(-45deg); }
+.menubar { position: relative; z-index: 5; height: 25px; flex: none; display: flex; align-items: center; gap: 2px; padding: 0 5px; border-bottom: 1px solid var(--xp-line); }
+.menubar > button, .menu-trigger { height: 22px; padding: 1px 7px; border: 1px solid transparent; background: transparent; color: #1b1b1b; text-align: left; }
+.menubar > button:hover, .menu-trigger:hover, .menu-root.open .menu-trigger { border-color: #316ac5; background: #316ac5; color: #fff; }
+.menu-root { position: relative; }
+.menu-popup, .submenu-popup { display: none; position: absolute; min-width: 190px; padding: 3px; border: 1px solid #777; background: #fff; box-shadow: 2px 3px 7px rgba(0, 0, 0, .28); }
+.menu-popup { top: 21px; left: 0; }
+.menu-root.open .menu-popup { display: block; }
+.menu-popup button, .menu-popup a, .submenu-root { width: 100%; min-height: 25px; padding: 5px 25px 5px 22px; border: 0; background: transparent; color: #111; display: flex; align-items: center; justify-content: space-between; text-align: left; text-decoration: none; white-space: nowrap; }
+.menu-popup button:hover, .menu-popup a:hover, .submenu-root:hover, .submenu-root:focus { background: #316ac5; color: #fff; outline: none; }
+.submenu-root { position: relative; }
+.submenu-popup { top: -4px; left: calc(100% - 2px); }
+.submenu-root:hover .submenu-popup, .submenu-root:focus-within .submenu-popup { display: block; }
+.menu-separator { height: 1px; margin: 3px 2px; background: #aaa; border-bottom: 1px solid #fff; }
+.toolbar { height: 40px; flex: none; display: flex; align-items: center; gap: 1px; padding: 3px 7px; border-bottom: 1px solid var(--xp-line); background: #ece9d8; }
+.toolbar button { height: 31px; padding: 2px 7px; border: 1px solid transparent; border-radius: 2px; background: transparent; color: #222; display: inline-flex; align-items: center; gap: 5px; }
+.toolbar button:hover { border-color: #b6aa87; background: linear-gradient(#fffdf5, #ded7c3); }
+.toolbar button:disabled { opacity: .42; filter: grayscale(1); }
+.toolbar button b { color: #2f9a25; font: bold 24px/1 Arial, sans-serif; text-shadow: 1px 1px #fff; }
+.toolbar button small { margin-left: 2px; color: #555; font-size: 8px; }
+.toolbar .nav-forward { color: #999; font-size: 22px; }
+.toolbar .nav-up { color: #2f9a25; font-size: 22px; font-weight: bold; }
+.toolbar .nav-search b { color: #1a6bd1; font-size: 27px; transform: rotate(-15deg); }
+.toolbar .nav-folders b { color: #d69b24; font-size: 22px; }
+.toolbar i { width: 1px; height: 28px; margin: 0 5px; background: #aaa; border-right: 1px solid #fff; }
 .addressbar { height: 31px; flex: none; display: flex; align-items: center; gap: 7px; padding: 3px 7px; border-bottom: 1px solid var(--xp-line); color: #666; }
-.address-value { height: 23px; flex: 1; overflow: hidden; padding: 3px 7px; border: 1px inset #b5b5a5; background: #fff; color: #222; white-space: nowrap; }
+.address-value { height: 23px; min-width: 0; flex: 1; overflow: hidden; padding: 3px 7px; border: 1px inset #b5b5a5; background: #fff; color: #222; white-space: nowrap; }
+.address-value[aria-invalid="true"] { background: #fff3f3; color: #8b1010; }
 .address-go { height: 23px; padding: 1px 9px; border: 1px solid #8d8d7c; border-radius: 2px; background: #f4f2e9; }
 .window-content { flex: 1; min-height: 0; overflow: auto; background: #fff; }
 .statusbar { height: 25px; flex: none; display: grid; grid-template-columns: 1fr 120px; gap: 3px; padding: 3px; background: var(--xp-cream); }
@@ -265,6 +282,8 @@ a { color: #124aa0; }
 .profile-grid dl { margin: 0; }
 .profile-grid dt { margin-top: 10px; color: #666; }
 .profile-grid dd { margin: 2px 0; font-weight: bold; }
+.file-preview { min-height: 220px; padding: 18px; border: 1px solid #d0d0c8; background: #fff; box-shadow: inset 0 0 0 1px #f5f5ef; }
+.file-preview pre { margin: 0; white-space: pre-wrap; font: 13px/1.55 "Lucida Console", Consolas, monospace; }
 .browser-page { min-height: 100%; padding: 34px; background: #fff; }
 .browser-page .browser-hero { max-width: 640px; margin: 4vh auto; padding: 25px; border: 1px solid #bbb; box-shadow: 0 6px 18px rgba(0, 0, 0, .12); }
 .browser-page h2 { margin: 0 0 8px; font: 28px Georgia, serif; }
@@ -294,14 +313,11 @@ a { color: #124aa0; }
 .noscript-content { position: fixed; z-index: 10001; inset: 20px; overflow: auto; padding: 24px; background: #fff; }
 
 @media (max-width: 720px) {
-  :root { --taskbar-height: 53px; }
+  :root { --taskbar-height: 39px; }
   body { font-size: 14px; }
-  .desktop-intro { top: 14px; right: 14px; left: 14px; width: auto; padding: 14px 16px; }
-  .desktop-intro .eyebrow { font-size: 9px; }
-  .desktop-intro h1 { font-size: 26px; }
-  .desktop-intro button { margin-top: 10px; }
-  .desktop-icons { position: absolute; top: 178px; right: 0; bottom: var(--taskbar-height); left: 0; width: 100%; height: auto; grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 92px); justify-items: center; overflow: auto; padding: 5px 8px; }
-  #start-button { min-width: 96px; padding: 0 12px 0 7px; }
+  .desktop-icons { position: absolute; top: 8px; right: 0; bottom: var(--taskbar-height); left: 0; width: 100%; height: auto; grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 92px); justify-items: center; overflow: auto; padding: 5px 8px; }
+  #start-button { width: 129px; min-width: 129px; height: 39px; }
+  #start-button img { width: 129px; height: 39px; }
   .tray { min-width: 72px; padding: 0 7px; }
   .tray span { display: none; }
   #task-buttons { padding: 5px 3px; }
@@ -317,7 +333,6 @@ a { color: #124aa0; }
   .explorer-sidebar { display: none; }
   .explorer-main { padding: 16px 13px 175px; }
   .cards, .profile-grid { grid-template-columns: 1fr; }
-  .desktop-intro.window-open { display: none; }
   #start-menu { width: 100%; max-width: none; }
   .start-menu-body { min-height: 52vh; }
   #clippy { right: -12px; bottom: calc(var(--taskbar-height) - 3px); transform: scale(.78); transform-origin: right bottom; }
@@ -326,7 +341,7 @@ a { color: #124aa0; }
 }
 
 @media (max-width: 400px) {
-  .desktop-icons { grid-template-columns: repeat(2, 1fr); top: 182px; }
+  .desktop-icons { grid-template-columns: repeat(2, 1fr); top: 8px; }
   .start-places { display: none; }
   .start-menu-body { grid-template-columns: 1fr; }
   .file-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -335,13 +350,10 @@ a { color: #124aa0; }
 @media (max-height: 600px) and (min-width: 721px) {
   .desktop-icons { grid-template-rows: repeat(4, 86px); padding-top: 10px; }
   .desktop-icon { min-height: 82px; }
-  .desktop-intro { top: 22px; padding: 15px 18px; }
-  .desktop-intro h1 { font-size: 30px; }
-  .desktop-intro p:not(.eyebrow) { display: none; }
-  .desktop-intro button { margin-top: 10px; }
   #clippy { right: -7px; bottom: calc(var(--taskbar-height) - 7px); transform: scale(.78); transform-origin: right bottom; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .boot-blocks { animation: none !important; transform: translateX(40px); }
 }

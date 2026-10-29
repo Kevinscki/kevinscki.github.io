@@ -26,7 +26,7 @@ const links = {
   stereoMatrix: 'https://github.com/Kevinscki/stereo-matrix-virtualizer',
   stkn: 'https://github.com/Kevinscki/stkn',
   email: 'mailto:kelvinrutatina@gmail.com',
-  cv: 'downloads/Kelvin_Rutatina_CV.md'
+  cv: 'downloads/Kelvin_Rutatina_CV.pdf'
 };
 
 const APPS = {
@@ -43,6 +43,7 @@ const APPS = {
 
 const desktopAppIds = ['computer', 'projects', 'writing', 'browser', 'terminal', 'recycle'];
 const startAppIds = ['projects', 'writing', 'browser', 'terminal'];
+const explorerAppIds = new Set(['computer', 'projects', 'academics', 'writing', 'socials', 'cv', 'recycle']);
 
 const virtualFs = {
   'C:\\': { type: 'dir', children: ['PROJECTS', 'ACADEMICS', 'WRITEUPS', 'SOCIALS', 'CV', 'README.TXT'] },
@@ -51,21 +52,21 @@ const virtualFs = {
   'C:\\WRITEUPS': { type: 'dir', children: ['BITCOIN.URL', 'SOLANA_TOKEN_2022.URL', 'USBSTORAGE_NULLCON.URL', 'MEDIUM.URL'] },
   'C:\\RECYCLER': { type: 'dir', children: ['STEREO_MATRIX_VIRTUALIZER.URL'] },
   'C:\\SOCIALS': { type: 'dir', children: ['GITHUB.URL', 'MEDIUM.URL', 'LINKEDIN.URL', 'EMAIL.URL'] },
-  'C:\\CV': { type: 'dir', children: ['KELVIN_RUTATINA_CV.MD'] },
-  'C:\\README.TXT': { type: 'file', content: 'KELVIN RUTATINA\nLocal-first AI infrastructure, cybersecurity, and automation.\n\nTry: DIR, CD PROJECTS, TYPE AURORA.TXT, START GITHUB' },
+  'C:\\CV': { type: 'dir', children: ['KELVIN_RUTATINA_CV.PDF'] },
+  'C:\\README.TXT': { type: 'file', content: 'HOW TO USE THIS PORTFOLIO\n\n• Double-click a desktop icon to open it.\n• Open folders to move through Projects, Academics, Write-Ups, Socials, and CV.\n• Type a location such as C:\\PROJECTS in the Address bar, then press Enter or Go.\n• Use Back, Forward, and Up just like Windows Explorer.\n• Open Command Prompt and type HELP to see its commands.\n• Drag across the desktop to select icons.\n• The CV folder contains the downloadable PDF.' },
   'C:\\PROJECTS\\AURORA.TXT': { type: 'file', content: 'AURORA\nCurrent direction: practical sovereign AI compute and local inference infrastructure built around real hardware, operator constraints, and ownership.' },
-  'C:\\PROJECTS\\LLAMATERM.URL': { type: 'file', content: 'LlamaTerm — an AI-enhanced Linux terminal using local LLMs for command correction and operator workflows.', href: links.llamaTerm },
+  'C:\\PROJECTS\\LLAMATERM.URL': { type: 'file', content: 'LlamaTerm — a Python terminal assistant backed by a local Ollama model. It attempts a command normally, then asks the model to diagnose a failed command and lets the operator review the proposed replacement before execution. The project also keeps command history and persistent shell variables.', href: links.llamaTerm },
   'C:\\PROJECTS\\CURRIOR.URL': { type: 'file', content: 'Currior Anomaly Workflow — an automated anomaly-detection pipeline integrating local AI models and external data streams.', href: links.currior },
-  'C:\\PROJECTS\\STKN.URL': { type: 'file', content: 'stkn — a Solana Token-2022 devnet token with hosted metadata, built as the working artifact behind the Token-2022 guide.', href: links.stkn },
+  'C:\\PROJECTS\\STKN.URL': { type: 'file', content: 'stkn — the hosted image and metadata artifact used by Kelvin’s Token-2022 walkthrough. The guide creates a test-only devnet token with spl-token, mints supply, and initializes publicly hosted metadata on-chain.', href: links.stkn },
   'C:\\PROJECTS\\OMNIHEALTH.URL': { type: 'file', content: 'Omnihealth — open-source healthcare software to which Kelvin contributed.', href: links.omnihealth },
   'C:\\PROJECTS\\PROMPTTHEFLAG.TXT': { type: 'file', content: 'PromptTheFlag — bypassed LLM guardrails across all seven challenge levels using adversarial prompt techniques.' },
   'C:\\PROJECTS\\AUTOMATION.TXT': { type: 'file', content: 'Security-minded operator workflows using n8n, Activepieces, Ollama, APIs, and MCP tooling.' },
-  'C:\\ACADEMICS\\DEGREE.TXT': { type: 'file', content: 'First-Class Bachelor of Cybersecurity graduate, Institute of Accountancy Arusha. GPA: 4.55 / 5.0.' },
+  'C:\\ACADEMICS\\DEGREE.TXT': { type: 'file', content: 'First-Class Bachelor of Cybersecurity graduate, Institute of Accountancy Arusha.' },
   'C:\\ACADEMICS\\CERTIFICATIONS.TXT': { type: 'file', content: 'eLearnSecurity Junior Penetration Tester (eJPT)\nAI 101: Fundamentals — TCM Security' },
   'C:\\ACADEMICS\\LABS.TXT': { type: 'file', content: 'Hands-on work across Hack The Box, TryHackMe, Nullcon, PicoCTF, CTFZone, and PromptTheFlag.' },
   'C:\\ACADEMICS\\CTFGUIDE.URL': { type: 'file', content: 'CTFGuide competitor and leaderboard handle: kevinscki.', href: links.ctfguide },
-  'C:\\WRITEUPS\\BITCOIN.URL': { type: 'file', content: 'Bitcoin Explained to an 8-Year-Old Prodigy — a ground-up explanation moving from keys and nodes to mining economics, market structure, and risk.', href: links.bitcoin },
-  'C:\\WRITEUPS\\SOLANA_TOKEN_2022.URL': { type: 'file', content: 'Making a Solana Token (Token-2022 Guide) — a practical devnet walkthrough covering token creation, minting, hosted metadata, and metadata initialization.', href: links.solanaGuide },
+  'C:\\WRITEUPS\\BITCOIN.URL': { type: 'file', content: 'Bitcoin Explained to an 8-Year-Old Prodigy — a 13-minute, ground-up explanation of distributed trust, keys, addresses, nodes, transactions, proof-of-work mining, custody, seed phrases, liquidity, regulation, market behavior, and risk.', href: links.bitcoin },
+  'C:\\WRITEUPS\\SOLANA_TOKEN_2022.URL': { type: 'file', content: 'Making a Solana Token (Token-2022 Guide) — a reproducible, test-only devnet walkthrough using Rust, Solana CLI, and spl-token. It covers keypair setup, token and account creation, minting, hosted JSON/image metadata, and on-chain initialization.', href: links.solanaGuide },
   'C:\\WRITEUPS\\USBSTORAGE_NULLCON.URL': { type: 'file', content: 'USBstorage Writeup — nullcon (2025), covering the first CTF challenge listed in the event\'s misc category.', href: links.usbStorage },
   'C:\\WRITEUPS\\MEDIUM.URL': { type: 'file', content: 'Kelvin Rutatina on Medium', href: links.medium },
   'C:\\RECYCLER\\STEREO_MATRIX_VIRTUALIZER.URL': { type: 'file', content: 'Stereo Matrix Virtualizer — an experiment built to explore virtual-surround processing from stereo audio.', href: links.stereoMatrix },
@@ -73,63 +74,64 @@ const virtualFs = {
   'C:\\SOCIALS\\MEDIUM.URL': { type: 'file', content: 'Medium: medium.com/@kelvinrutatina', href: links.medium },
   'C:\\SOCIALS\\LINKEDIN.URL': { type: 'file', content: 'LinkedIn: linkedin.com/in/kelvinrutatina', href: links.linkedin },
   'C:\\SOCIALS\\EMAIL.URL': { type: 'file', content: 'Email: kelvinrutatina@gmail.com', href: links.email },
-  'C:\\CV\\KELVIN_RUTATINA_CV.MD': { type: 'file', content: 'First-Class Cybersecurity graduate working across AI security, local model infrastructure, offensive security, and automation.\n\nSTART CV to download the complete Markdown CV.', href: links.cv }
+  'C:\\CV\\KELVIN_RUTATINA_CV.PDF': { type: 'file', content: 'First-Class Cybersecurity graduate working across AI security, local model infrastructure, offensive security, and automation.\n\nSTART CV to download the complete PDF résumé.', href: links.cv }
 };
 
 const CLIPPY_MESSAGES = {
   welcome: {
-    text: "It looks like you're visiting Kelvin's computer. I can point you toward the useful evidence.",
+    text: "It looks like you’re trying to explore Kelvin’s portfolio. Start with Current Work, browse C:\\, or open Command Prompt if you prefer evidence in a black rectangle.",
     animation: 'wakeup',
     links: [{ label: 'Current work', app: 'projects' }, { label: 'Open C:\\', app: 'computer' }, { label: 'Try CMD', app: 'terminal' }]
   },
   computer: {
-    text: 'Local Disk (C:) has a completely reasonable 1 PB capacity. Explorer and Command Prompt show the same files.',
+    text: 'It looks like you’re trying to inspect this computer. Open a folder to browse the portfolio, or type VOL in Command Prompt to verify the completely ordinary 1 PB drive.',
     animation: 'point-right',
     links: [{ label: 'Browse projects', app: 'projects' }, { label: 'Open CMD', app: 'terminal' }]
   },
   projects: {
-    text: 'Aurora is the current direction. LlamaTerm and the security work show the path that led there.',
+    text: 'It looks like you’re trying to judge the projects. Start with Aurora for the current direction, then use LlamaTerm to see how local AI work became an actual operator tool.',
     animation: 'think',
     links: [{ label: 'LlamaTerm on GitHub', href: links.llamaTerm }, { label: 'Read the CV', app: 'cv' }]
   },
   academics: {
-    text: 'The degree is the foundation. The labs, Nullcon work, and CTFGuide record show the practice around it.',
+    text: 'It looks like you’re checking the academic record. The degree gives the foundation; the labs, Nullcon work, and CTF activity show how it was applied.',
     animation: 'read',
     links: [{ label: 'CTFGuide leaderboards', href: links.ctfguide }, { label: 'CV', app: 'cv' }]
   },
   writing: {
-    text: 'Three useful trails: explaining Bitcoin, shipping a Token-2022 artifact, and documenting a Nullcon challenge.',
-    animation: 'read',
+    text: 'It looks like you’re trying to read the technical work. Pick Bitcoin for explanation, Token-2022 for a reproducible build, or USBstorage for the investigation trail. I’ll hold still.',
+    animation: 'still',
     links: [{ label: 'Token-2022 guide', href: links.solanaGuide }, { label: 'Nullcon write-up', href: links.usbStorage }]
   },
   socials: {
-    text: 'GitHub is the proof shelf. Medium is the long-form shelf. LinkedIn is mostly a directory.',
+    text: 'It looks like you’re trying to find Kelvin elsewhere. Use GitHub for artifacts, Medium for explanations, LinkedIn for the professional trail, or Email for a direct message.',
     animation: 'point-right',
     links: [{ label: 'GitHub', href: links.github }, { label: 'Medium', href: links.medium }]
   },
   cv: {
-    text: 'The CV is here when a human or an applicant-tracking system insists on one.',
-    animation: 'check',
+    text: 'It looks like you’re trying to download the CV. Use the PDF link in this folder; it is the actual CV file, and I’ll stay still while you get it.',
+    animation: 'still',
     links: [{ label: 'Download CV', href: links.cv }, { label: 'See projects', app: 'projects' }]
   },
   browser: {
-    text: 'Internet Explorer survived long enough to take you to GitHub. That seems fair.',
+    text: 'It looks like you’re trying to open Kelvin’s GitHub. Use the modern-tab link—Internet Explorer has already done more than anyone expected of it.',
     animation: 'point-right',
     links: [{ label: 'Open GitHub', href: links.github }, { label: 'Socials', app: 'socials' }]
   },
   terminal: {
-    text: 'This one speaks Windows. Try DIR, CD PROJECTS, TYPE AURORA.TXT, or START GITHUB.',
+    text: 'It looks like you’re trying to use Command Prompt. Type HELP for the command list, or begin with DIR, CD PROJECTS, TYPE AURORA.TXT, or VOL.',
     animation: 'think',
     links: [{ label: 'Open C:\\ in Explorer', app: 'computer' }]
   },
   recycle: {
-    text: 'Experiments can fail without becoming evidence that the person failed.',
+    text: 'It looks like you’re trying to inspect discarded work. Open the experiment for context, then return to Projects for the current, stronger evidence.',
     animation: 'idle',
     links: [{ label: 'Stereo Matrix Virtualizer', href: links.stereoMatrix }, { label: 'Return to projects', app: 'projects' }]
   }
 };
 
 const clippyAnimations = {
+  still: `${ASSET}/clippy/still.png`,
   idle: `${ASSET}/clippy/idle.webp`,
   wakeup: `${ASSET}/clippy/wakeup.webp`,
   think: `${ASSET}/clippy/think.webp`,
@@ -153,56 +155,61 @@ function externalLink(href, label, className = '') {
 }
 
 function explorerShell(title, lead, content, taskLinks = []) {
-  const nav = taskLinks.map(item => `<button type="button" data-open="${item.app}">${item.label}</button>`).join('');
+  const nav = taskLinks.map(item => item.href
+    ? `<button type="button" data-href="${item.href}">${item.label}</button>`
+    : `<button type="button" data-open="${item.app}">${item.label}</button>`).join('');
+  const details = title === 'Local Disk (C:)'
+    ? `${title}<br>1.00 PB system volume`
+    : `${title}<br>Portfolio folder`;
   return `<div class="explorer">
     <aside class="explorer-sidebar">
       <section class="side-card"><h3>System Tasks</h3><nav>${nav || '<button type="button" data-open="computer">View system information</button>'}</nav></section>
-      <section class="side-card"><h3>Details</h3><p>${title}<br>Kelvin XP<br>Local Disk (C:)</p></section>
+      <section class="side-card"><h3>Details</h3><p>${details}</p></section>
     </aside>
     <div class="explorer-main"><h2>${title}</h2><p class="lead">${lead}</p>${content}</div>
   </div>`;
 }
 
-function fileEntry({ app, href, icon = icons.folder, name, detail = '' }) {
-  const attrs = app ? `data-open="${app}"` : `data-href="${href}"`;
+function fileEntry({ app, href, path, icon = icons.folder, name, detail = '' }) {
+  const attrs = app ? `data-open="${app}"` : path ? `data-location="${path}"` : `data-href="${href}"`;
   return `<button type="button" class="file-entry" ${attrs}>${iconMarkup(icon)}<span>${name}</span>${detail ? `<small>${detail}</small>` : ''}</button>`;
 }
 
 function renderComputer() {
   const folders = [
-    { app: 'projects', name: 'PROJECTS', detail: 'File Folder' },
-    { app: 'academics', name: 'ACADEMICS', detail: 'File Folder', icon: icons.help },
-    { app: 'writing', name: 'WRITEUPS', detail: 'File Folder', icon: icons.globe },
-    { app: 'socials', name: 'SOCIALS', detail: 'File Folder', icon: icons.people },
+    { app: 'projects', name: 'Projects', detail: 'File Folder' },
+    { app: 'academics', name: 'Academics', detail: 'File Folder' },
+    { app: 'writing', name: 'Write-Ups', detail: 'File Folder' },
+    { app: 'socials', name: 'Socials', detail: 'File Folder' },
     { app: 'cv', name: 'CV', detail: 'File Folder' },
-    { app: 'terminal', name: 'README.TXT', detail: 'Text Document', icon: icons.help }
+    { path: 'C:\\README.TXT', name: 'README.TXT', detail: 'Text Document', icon: icons.help }
   ].map(fileEntry).join('');
-  return explorerShell('My Computer', 'Files Stored on This Computer', `
+  return explorerShell('Local Disk (C:)', 'Portfolio folders stored on this computer. Open a folder or type its path in the Address bar.', `
     <div class="drive-list">
-      <article class="drive">${iconMarkup(icons.computer)}<div><strong>Local Disk (C:)</strong><div class="capacity"><i></i></div><small>61.2 TB used · 938.8 TB free · 1.00 PB capacity</small></div></article>
+      <article class="drive">${iconMarkup(icons.computer)}<div><strong>Local Disk (C:)</strong><div class="capacity"><i></i></div><small>VOL: KELVIN_PORTFOLIO · 1.00 PB capacity · totally real</small></div></article>
     </div>
-    <h3>Files and folders</h3><div class="file-grid">${folders}</div>
+    <h3>Files and Folders</h3><div class="file-grid">${folders}</div>
   `, [{ label: 'Open Command Prompt', app: 'terminal' }, { label: 'View projects', app: 'projects' }]);
 }
 
 function renderProjects() {
-  return explorerShell('C:\\PROJECTS', 'Current work first; older projects provide evidence rather than noise.', `
+  return explorerShell('C:\\PROJECTS', 'Working systems, research prototypes, and implementation artifacts. Each entry explains what was built, how it operates, and where the evidence lives.', `
     <div class="cards">
       <article class="card featured"><h3>Aurora — current build</h3><p>Practical sovereign AI compute and local inference infrastructure built around ownership, real hardware constraints, and operator usability. Current work includes defining the compute build and sourcing path.</p><div class="tag-list"><span class="tag">local AI</span><span class="tag">compute</span><span class="tag">infrastructure</span><span class="tag">in progress</span></div></article>
-      <article class="card"><h3>LlamaTerm</h3><p>An AI-enhanced Linux terminal using local LLMs for Bash correction, command optimization, and security workflows.</p>${externalLink(links.llamaTerm, 'Open repository')}</article>
-      <article class="card"><h3>Currior Anomaly Workflow</h3><p>An automated anomaly-detection pipeline integrating local AI models with external data streams.</p>${externalLink(links.currior, 'Open repository')}</article>
-      <article class="card"><h3>stkn — Solana Token-2022</h3><p>A devnet token with hosted metadata, built as the working artifact behind a practical Token-2022 guide.</p>${externalLink(links.stkn, 'Open repository')} · ${externalLink(links.solanaGuide, 'Read the guide')}</article>
-      <article class="card"><h3>Omnihealth</h3><p>Open-source healthcare software to which I contributed.</p>${externalLink(links.omnihealth, 'Open repository')}</article>
+      <article class="card"><h3>LlamaTerm</h3><p>A Python command-line assistant that runs against a local Ollama model. Commands execute normally first; when one fails, the model diagnoses the error and proposes a replacement for the operator to review. The shell also persists history and variables instead of treating the model as a remote black box.</p>${externalLink(links.llamaTerm, 'Open repository')}</article>
+      <article class="card"><h3>Currior Anomaly Workflow</h3><p>A workflow experiment for routing system and external data through local AI analysis, with custom anomaly logic separating collection, interpretation, and operator review. It explores how useful detection can remain local and automatable.</p>${externalLink(links.currior, 'Open repository')}</article>
+      <article class="card"><h3>stkn — Solana Token-2022</h3><p>The public metadata artifact behind a reproducible Token-2022 build. The accompanying guide uses devnet deliberately, then walks through CLI setup, keypairs, minting, hosted JSON/image metadata, and on-chain initialization without implying a real-currency launch.</p>${externalLink(links.stkn, 'Open repository')} · ${externalLink(links.solanaGuide, 'Read the guide')}</article>
+      <article class="card"><h3>Omnihealth</h3><p>An open-source healthcare application contribution: a useful example of working inside an existing codebase where domain context, maintainability, and collaboration matter as much as starting from scratch.</p>${externalLink(links.omnihealth, 'Open repository')}</article>
       <article class="card"><h3>PromptTheFlag</h3><p>Completed all seven LLM guardrail and prompt-injection challenge levels using adversarial manipulation techniques.</p><div class="tag-list"><span class="tag">LLM security</span><span class="tag">7 / 7</span></div></article>
-      <article class="card"><h3>Operator automation</h3><p>Security-minded workflows connecting n8n, Activepieces, Ollama, APIs, Telegram, and MCP tooling.</p><div class="tag-list"><span class="tag">automation</span><span class="tag">local-first</span></div></article>
+      <article class="card"><h3>Operator automation</h3><p>Security-minded workflows connecting n8n and Activepieces with Ollama, APIs, Telegram, and MCP tools. The emphasis is on observable hand-offs and human review points—not hiding consequential actions behind an impressive-looking demo.</p><div class="tag-list"><span class="tag">automation</span><span class="tag">local-first</span></div></article>
     </div>
   `, [{ label: 'Open GitHub', app: 'browser' }, { label: 'Read write-ups', app: 'writing' }]);
 }
 
 function renderAcademics() {
-  return explorerShell('C:\\ACADEMICS', 'Formal foundation and challenge-based practice.', `
+  return explorerShell('C:\\ACADEMICS', 'A First-Class cybersecurity foundation reinforced through practical certifications, labs, CTFs, and applied AI-security work.', `
     <div class="timeline">
-      <article><h3>First-Class Bachelor of Cybersecurity</h3><strong>Institute of Accountancy Arusha</strong><p>GPA 4.55 / 5.0.</p></article>
+      <article><h3>First-Class Bachelor of Cybersecurity</h3><strong>Institute of Accountancy Arusha</strong><p>Formal study spanning cybersecurity principles, systems, and applied technical practice.</p></article>
       <article><h3>eLearnSecurity Junior Penetration Tester</h3><strong>INE Security</strong><p>Offensive-security methodology and practical assessment.</p></article>
       <article><h3>AI 101: Fundamentals</h3><strong>TCM Security</strong><p>AI fundamentals supporting later local-model and LLM-security work.</p></article>
       <article><h3>Labs and CTFs</h3><p>Hack The Box, TryHackMe, Nullcon, PicoCTF, CTFZone, and PromptTheFlag.</p></article>
@@ -212,14 +219,14 @@ function renderAcademics() {
 }
 
 function renderWriting() {
-  return explorerShell('C:\\WRITEUPS', 'Technical writing as evidence of understanding, not content marketing.', `
+  return explorerShell('C:\\WRITEUPS', 'Long-form explanations and reproducible walkthroughs that expose the reasoning, constraints, commands, and trade-offs behind the work.', `
     <div class="cards">
-      <article class="card featured"><h3>Bitcoin Explained to an 8-Year-Old Prodigy</h3><p>A ground-up explanation that moves from private keys, addresses, nodes, and mining to custody, incentives, liquidity, regulation, and risk.</p>${externalLink(links.bitcoin, 'Read on Medium')}</article>
-      <article class="card"><h3>Making a Solana Token — Token-2022 Guide</h3><p>A practical devnet walkthrough: create the token and account, mint supply, host metadata, and initialize it on-chain.</p>${externalLink(links.solanaGuide, 'Read on Medium')} · ${externalLink(links.stkn, 'Open stkn')}</article>
-      <article class="card"><h3>USBstorage Writeup — nullcon (2025)</h3><p>A write-up of the first challenge in nullcon's miscellaneous category.</p>${externalLink(links.usbStorage, 'Read on Medium')}</article>
+      <article class="card featured"><h3>Bitcoin Explained to an 8-Year-Old Prodigy</h3><p>A 13-minute bridge from first principles to operational and economic reality: distributed trust, keys and addresses, node validation, proof-of-work mining, custody, seed phrases, liquidity, regulation, market behavior, and risk. It explains where trust moves instead of pretending blockchain removes it.</p>${externalLink(links.bitcoin, 'Read on Medium')}</article>
+      <article class="card"><h3>Making a Solana Token — Token-2022 Guide</h3><p>A test-only devnet walkthrough built for reproduction on a Linux/Unix terminal. It installs the toolchain, creates a keypair and token account, mints supply, prepares public JSON/image metadata, and initializes that metadata on-chain.</p>${externalLink(links.solanaGuide, 'Read on Medium')} · ${externalLink(links.stkn, 'Open stkn')}</article>
+      <article class="card"><h3>USBstorage Writeup — nullcon (2025)</h3><p>A challenge write-up from nullcon’s miscellaneous category. It records the investigation path and resulting solution as a repeatable technical artifact rather than reducing the work to a leaderboard result.</p>${externalLink(links.usbStorage, 'Read on Medium')}</article>
       <article class="card"><h3>More from Kelvin</h3><p>Security, blockchain systems, local AI, and implementation notes.</p>${externalLink(links.medium, 'Open Medium profile')}</article>
     </div>
-  `, [{ label: 'Open Medium', app: 'browser' }, { label: 'View projects', app: 'projects' }]);
+  `, [{ label: 'Open Medium', href: links.medium }, { label: 'View projects', app: 'projects' }]);
 }
 
 function renderSocials() {
@@ -234,9 +241,9 @@ function renderSocials() {
 }
 
 function renderCV() {
-  return explorerShell('C:\\CV', 'A compact version of the formal record. The complete Markdown file is downloadable.', `
+  return explorerShell('C:\\CV', 'A compact version of the formal record. The complete résumé is available as a PDF.', `
     <div class="profile-grid">
-      <section class="card"><h3>Kelvin Rutatina</h3><p>Cybersecurity Engineer · AI Security · Security Automation · Offensive Security</p><dl><dt>Location</dt><dd>Arusha, Tanzania</dd><dt>Email</dt><dd>kelvinrutatina@gmail.com</dd><dt>Education</dt><dd>First-Class, GPA 4.55 / 5.0</dd></dl></section>
+      <section class="card"><h3>Kelvin Rutatina</h3><p>Cybersecurity Engineer · AI Security · Security Automation · Offensive Security</p><dl><dt>Location</dt><dd>Arusha, Tanzania</dd><dt>Email</dt><dd>kelvinrutatina@gmail.com</dd><dt>Education</dt><dd>First-Class Bachelor of Cybersecurity</dd></dl></section>
       <section class="card"><h3>Focus</h3><p>Local LLM deployment, AI infrastructure, LLM security, offensive security, Linux systems, workflow automation, and API/MCP tooling.</p><p>${externalLink(links.cv, 'Download complete CV', 'xp-button')}</p></section>
     </div>
   `, [{ label: 'View academics', app: 'academics' }, { label: 'View projects', app: 'projects' }]);
@@ -287,15 +294,17 @@ function openApp(id) {
   if (openWindows.has(id)) {
     const existing = openWindows.get(id);
     existing.classList.remove('minimized');
+    if (existing.dataset.app !== id) navigateWindowToApp(existing, id);
     focusWindow(existing);
     return;
   }
 
   const win = document.querySelector('#window-template').content.firstElementChild.cloneNode(true);
   win.dataset.app = id;
+  win.dataset.windowId = id;
   win.querySelector('.title-icon').src = app.icon;
   win.querySelector('.window-title').textContent = app.title;
-  win.querySelector('.address-value').textContent = app.address;
+  win.querySelector('.address-value').value = app.address;
   win.querySelector('.window-content').innerHTML = app.render();
   win.querySelector('.status-text').textContent = id === 'computer' ? '6 objects' : `${app.title} — ready`;
 
@@ -304,16 +313,17 @@ function openApp(id) {
   win.style.top = `calc(46% + ${offset}px)`;
   document.querySelector('#window-layer').append(win);
   openWindows.set(id, win);
+  win._navHistory = [{ type: 'app', id }];
+  win._navIndex = win._navHistory.length - 1;
   bindWindow(win);
   addTaskButton(id);
-  document.querySelector('.desktop-intro').classList.add('window-open');
   if (id === 'terminal') initTerminal(win);
   focusWindow(win);
   history.replaceState(null, '', `#${id}`);
 }
 
 function bindWindow(win) {
-  const id = win.dataset.app;
+  const id = win.dataset.windowId;
   win.addEventListener('pointerdown', () => focusWindow(win));
   win.querySelector('[data-action="close"]').addEventListener('click', () => closeWindow(id));
   win.querySelector('[data-action="minimize"]').addEventListener('click', () => {
@@ -326,9 +336,26 @@ function bindWindow(win) {
   win.querySelector('.titlebar').addEventListener('dblclick', event => {
     if (!event.target.closest('button')) win.classList.toggle('maximized');
   });
-  win.querySelector('.address-go').addEventListener('click', () => {
-    if (id === 'browser') window.open(links.github, '_blank', 'noopener');
-    else showClippy(id);
+  win.querySelector('.addressbar').addEventListener('submit', event => {
+    event.preventDefault();
+    navigateToLocation(win, win.querySelector('.address-value').value);
+  });
+  win.querySelector('.nav-back').addEventListener('click', () => moveWindowHistory(win, -1));
+  win.querySelector('.nav-forward').addEventListener('click', () => moveWindowHistory(win, 1));
+  win.querySelector('.nav-up').addEventListener('click', () => {
+    if (!explorerAppIds.has(win.dataset.app)) return;
+    if (win.dataset.filePath) {
+      const parent = win.dataset.filePath.substring(0, win.dataset.filePath.lastIndexOf('\\')) || 'C:\\';
+      navigateWindowToApp(win, locationApps[parent] || 'computer');
+    } else navigateWindowToApp(win, 'computer');
+  });
+  syncNavigationControls(win);
+  const menuTrigger = win.querySelector('.menu-trigger');
+  menuTrigger.addEventListener('click', event => {
+    event.stopPropagation();
+    const menu = menuTrigger.closest('.menu-root');
+    const open = menu.classList.toggle('open');
+    menuTrigger.setAttribute('aria-expanded', String(open));
   });
 
   let drag = null;
@@ -351,12 +378,144 @@ function bindWindow(win) {
   bar.addEventListener('pointercancel', () => { drag = null; });
 }
 
+function navigateWindowToApp(win, id, push = true) {
+  const app = APPS[id];
+  if (!app) return;
+  win.dataset.app = id;
+  delete win.dataset.filePath;
+  win.querySelector('.title-icon').src = app.icon;
+  win.querySelector('.window-title').textContent = app.title;
+  win.querySelector('.address-value').value = app.address;
+  win.querySelector('.address-value').removeAttribute('aria-invalid');
+  win.querySelector('.window-content').innerHTML = app.render();
+  win.querySelector('.status-text').textContent = id === 'computer' ? '6 objects' : `${app.title} — ready`;
+  updateWindowTaskButton(win, app);
+  if (push) pushWindowHistory(win, { type: 'app', id });
+  syncNavigationControls(win);
+  showClippy(id);
+  if (id === 'terminal') initTerminal(win);
+  history.replaceState(null, '', `#${id}`);
+}
+
+function showFileInWindow(win, key, push = true) {
+  const node = virtualFs[key];
+  if (!node || node.type !== 'file' || node.href) return;
+  win.dataset.app = locationApps[key.substring(0, key.lastIndexOf('\\'))] || 'computer';
+  win.dataset.filePath = key;
+  win.querySelector('.address-value').value = key;
+  win.querySelector('.window-content').innerHTML = explorerShell(key, 'Text document', `<article class="file-preview"><pre></pre></article>`, [{ label: 'Back to C:\\', app: 'computer' }]);
+  win.querySelector('.file-preview pre').textContent = node.content;
+  win.querySelector('.window-title').textContent = key.split('\\').pop();
+  win.querySelector('.title-icon').src = icons.help;
+  win.querySelector('.status-text').textContent = '1 object';
+  updateWindowTaskButton(win, { title: key.split('\\').pop(), icon: icons.help });
+  if (push) pushWindowHistory(win, { type: 'file', key });
+  syncNavigationControls(win);
+}
+
+function pushWindowHistory(win, entry) {
+  const current = win._navHistory?.[win._navIndex];
+  if (current && JSON.stringify(current) === JSON.stringify(entry)) return;
+  win._navHistory = (win._navHistory || []).slice(0, win._navIndex + 1);
+  win._navHistory.push(entry);
+  win._navIndex = win._navHistory.length - 1;
+}
+
+function moveWindowHistory(win, direction) {
+  const next = win._navIndex + direction;
+  if (!win._navHistory || next < 0 || next >= win._navHistory.length) return;
+  win._navIndex = next;
+  const entry = win._navHistory[next];
+  if (entry.type === 'app') navigateWindowToApp(win, entry.id, false);
+  else showFileInWindow(win, entry.key, false);
+  syncNavigationControls(win);
+}
+
+function syncNavigationControls(win) {
+  const historyLength = win._navHistory?.length || 0;
+  win.querySelector('.nav-back').disabled = win._navIndex <= 0;
+  win.querySelector('.nav-forward').disabled = win._navIndex < 0 || win._navIndex >= historyLength - 1;
+  win.querySelector('.nav-up').disabled = !explorerAppIds.has(win.dataset.app) || (win.dataset.app === 'computer' && !win.dataset.filePath);
+}
+
+function updateWindowTaskButton(win, app) {
+  const task = document.querySelector(`[data-task="${win.dataset.windowId}"]`);
+  if (task) task.innerHTML = `${iconMarkup(app.icon)}<span>${app.title}</span>`;
+}
+
+const locationApps = {
+  'C:\\': 'computer',
+  'C:\\PROJECTS': 'projects',
+  'C:\\ACADEMICS': 'academics',
+  'C:\\WRITEUPS': 'writing',
+  'C:\\SOCIALS': 'socials',
+  'C:\\CV': 'cv',
+  'C:\\RECYCLER': 'recycle'
+};
+
+function navigateToLocation(win, rawLocation) {
+  const input = win.querySelector('.address-value');
+  const status = win.querySelector('.status-text');
+  const raw = rawLocation.trim();
+  if (!raw) return;
+
+  if (/^(https?:\/\/|mailto:)/i.test(raw)) {
+    window.open(raw, '_blank', 'noopener');
+    status.textContent = `Opening ${raw}`;
+    return;
+  }
+
+  const alias = raw.toLowerCase().replace(/[\s_-]+/g, '');
+  const appAliases = {
+    c: 'computer', computer: 'computer', mycomputer: 'computer', localdiskc: 'computer',
+    project: 'projects', projects: 'projects', academic: 'academics', academics: 'academics',
+    writing: 'writing', writeup: 'writing', writeups: 'writing', social: 'socials', socials: 'socials',
+    cv: 'cv', resume: 'cv', résumé: 'cv', recycle: 'recycle', recycler: 'recycle',
+    cmd: 'terminal', terminal: 'terminal', commandprompt: 'terminal', github: 'browser'
+  };
+  if (appAliases[alias]) {
+    const appId = appAliases[alias];
+    navigateWindowToApp(win, appId);
+    return;
+  }
+
+  const currentAddress = input.value;
+  const currentParts = /^c:/i.test(currentAddress)
+    ? normalizeWindowsPath(currentAddress, []) || []
+    : [];
+  const targetParts = normalizeWindowsPath(raw, currentParts);
+  const key = targetParts ? pathKey(targetParts) : '';
+  const node = virtualFs[key];
+
+  if (!node) {
+    input.setAttribute('aria-invalid', 'true');
+    status.textContent = `Windows cannot find '${raw}'. Try C:\\PROJECTS or C:\\CV.`;
+    input.select();
+    return;
+  }
+
+  input.removeAttribute('aria-invalid');
+  input.value = key;
+  if (node.type === 'dir') {
+    const appId = locationApps[key];
+    if (appId) navigateWindowToApp(win, appId);
+    return;
+  }
+  if (node.href) {
+    window.open(node.href, '_blank', 'noopener');
+    status.textContent = `Opening ${key.split('\\').pop()}`;
+    return;
+  }
+
+  showFileInWindow(win, key);
+}
+
 function focusWindow(win) {
   if (!win || win.classList.contains('minimized')) return;
   document.querySelectorAll('.window, .task-button').forEach(node => node.classList.remove('active'));
   win.style.zIndex = String(++topZ);
   win.classList.add('active');
-  document.querySelector(`[data-task="${win.dataset.app}"]`)?.classList.add('active');
+  document.querySelector(`[data-task="${win.dataset.windowId}"]`)?.classList.add('active');
   showClippy(win.dataset.app);
   if (win.dataset.app === 'terminal') requestAnimationFrame(() => win.querySelector('.terminal-input')?.focus({ preventScroll: true }));
 }
@@ -376,7 +535,6 @@ function closeWindow(id) {
   win.remove();
   openWindows.delete(id);
   document.querySelector(`[data-task="${id}"]`)?.remove();
-  if (!openWindows.size) document.querySelector('.desktop-intro').classList.remove('window-open');
   if (wasActive || !openWindows.size) focusTopWindow();
 }
 
@@ -427,7 +585,7 @@ function pathKey(parts) {
 
 function renderDir(key, node) {
   const lines = [
-    ' Volume in drive C is KELVIN',
+    ' Volume in drive C is KELVIN_PORTFOLIO',
     ' Volume Serial Number is A11A-0001',
     '',
     ` Directory of ${key}`,
@@ -510,10 +668,11 @@ function initTerminal(win) {
     const cwdKey = pathKey(cwdParts);
 
     if (!command) return null;
-    if (command === 'help' || command === '?') return { text: 'Commands:\n  DIR / LS           List the current folder\n  CD <folder>        Change folder\n  TREE               Show the virtual disk tree\n  TYPE / CAT <file>  Read a file\n  START <target>     Open a folder, project, or link\n  CLS / CLEAR        Clear the screen\n  WHOAMI             Identify the user\n  VER                 Show system version\n\nExamples: CD PROJECTS · TYPE AURORA.TXT · START GITHUB' };
+    if (command === 'help' || command === '?') return { text: 'Commands:\n  DIR / LS           List the current folder\n  CD <folder>        Change folder\n  TREE               Show the virtual disk tree\n  TYPE / CAT <file>  Read a file\n  START <target>     Open a folder, project, or link\n  VOL                 Show the 1 PB volume details\n  CLS / CLEAR        Clear the screen\n  WHOAMI             Identify the user\n  VER                 Show system version\n\nExamples: CD PROJECTS · TYPE AURORA.TXT · START GITHUB · VOL' };
     if (command === 'cls' || command === 'clear') { output.textContent = ''; return null; }
     if (command === 'whoami') return { text: 'kelvin\\rutatina\nCybersecurity engineer · local AI infrastructure · automation' };
-    if (command === 'ver') return { text: 'Kelvin XP [Version 1.0.2026] — 1 PB Local Disk' };
+    if (command === 'ver') return { text: 'Kelvin Portfolio [Version 1.0.2026] — 1 PB volume' };
+    if (command === 'vol') return { text: ' Volume in drive C is KELVIN_PORTFOLIO\n Volume Serial Number is A11A-0001\n\n Capacity: 1.00 PB (totally real)' };
     if (command === 'date' || command === 'time') return { text: new Date().toString() };
     if (command === 'pwd') return { text: cwdKey };
     if (command === 'echo') return { text: arg };
@@ -570,12 +729,13 @@ function appendTerminal(output, text, className = '') {
 
 function setClippyAnimation(name) {
   const image = document.querySelector('#clippy-image');
+  clearTimeout(clippyTimer);
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
     image.src = `${ASSET}/clippy/still.png`;
     return;
   }
   image.src = clippyAnimations[name] || clippyAnimations.idle;
-  clearTimeout(clippyTimer);
+  if (name === 'still') return;
   if (name !== 'idle') clippyTimer = setTimeout(() => { image.src = clippyAnimations.idle; }, 4800);
 }
 
@@ -615,10 +775,27 @@ function closeStart() {
 
 document.addEventListener('click', event => {
   const opener = event.target.closest('[data-open]');
-  if (opener) openApp(opener.dataset.open);
+  if (opener) {
+    if (opener.matches('a')) event.preventDefault();
+    const parentWindow = opener.closest('.window') || (opener.closest('#clippy') ? document.querySelector('.window.active:not(.minimized)') : null);
+    const appId = opener.dataset.open;
+    if (parentWindow) navigateWindowToApp(parentWindow, appId);
+    else openApp(appId);
+  }
+  const location = event.target.closest('[data-location]');
+  if (location) {
+    const parentWindow = location.closest('.window');
+    if (parentWindow) navigateToLocation(parentWindow, location.dataset.location);
+  }
   const external = event.target.closest('[data-href]');
   if (external) window.open(external.dataset.href, '_blank', 'noopener');
   if (!event.target.closest('#start-menu, #start-button')) closeStart();
+  if (!event.target.closest('.menu-root')) {
+    document.querySelectorAll('.menu-root.open').forEach(menu => {
+      menu.classList.remove('open');
+      menu.querySelector('.menu-trigger')?.setAttribute('aria-expanded', 'false');
+    });
+  }
 });
 
 document.querySelector('#start-button').addEventListener('click', () => {
@@ -633,16 +810,31 @@ document.querySelector('#logoff').addEventListener('click', () => location.reloa
 document.querySelector('#clippy-close').addEventListener('click', () => {
   document.querySelector('#clippy-balloon').classList.add('hidden');
   document.querySelector('#clippy-character').setAttribute('aria-expanded', 'false');
-  setClippyAnimation('idle');
+  const activeApp = document.querySelector('.window.active')?.dataset.app;
+  setClippyAnimation(['writing', 'cv'].includes(activeApp) ? 'still' : 'idle');
 });
 document.querySelector('#clippy-character').addEventListener('click', () => {
   const balloon = document.querySelector('#clippy-balloon');
   const hidden = balloon.classList.toggle('hidden');
   document.querySelector('#clippy-character').setAttribute('aria-expanded', String(!hidden));
-  setClippyAnimation(hidden ? 'idle' : 'wakeup');
+  const activeApp = document.querySelector('.window.active')?.dataset.app;
+  setClippyAnimation(['writing', 'cv'].includes(activeApp) ? 'still' : hidden ? 'idle' : 'wakeup');
 });
 
 document.addEventListener('keydown', event => {
+  const activeWindow = document.querySelector('.window.active:not(.minimized)');
+  const isTyping = event.target.matches('input, textarea, [contenteditable="true"]');
+  if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'a' && !isTyping) {
+    event.preventDefault();
+    document.getSelection()?.removeAllRanges();
+    if (!activeWindow) document.querySelectorAll('.desktop-icon').forEach(icon => icon.classList.add('selected'));
+    return;
+  }
+  if (activeWindow && !isTyping && ((event.altKey && event.key === 'ArrowLeft') || event.key === 'BrowserBack' || event.key === 'Backspace')) {
+    event.preventDefault();
+    moveWindowHistory(activeWindow, -1);
+    return;
+  }
   const terminal = [...openWindows.values()].find(win => win.dataset.app === 'terminal' && win.classList.contains('active') && !win.classList.contains('minimized'));
   if (!terminal || event.ctrlKey || event.metaKey || event.altKey || event.target.matches('input, textarea, [contenteditable="true"]')) return;
   if (event.key.length === 1 || ['Backspace', 'ArrowUp', 'ArrowDown'].includes(event.key)) terminal.querySelector('.terminal-input')?.focus({ preventScroll: true });
@@ -652,7 +844,59 @@ function tick() {
   document.querySelector('#clock').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
 
+function initDesktopSelection() {
+  const desktop = document.querySelector('#desktop');
+  let selection = null;
+  desktop.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || event.target.closest('button, a, input, .window, #clippy, .taskbar, #start-menu')) return;
+    event.preventDefault();
+    document.querySelectorAll('.desktop-icon.selected').forEach(icon => icon.classList.remove('selected'));
+    const rect = desktop.getBoundingClientRect();
+    const box = document.createElement('div');
+    box.className = 'desktop-selection';
+    desktop.append(box);
+    selection = { startX: event.clientX - rect.left, startY: event.clientY - rect.top, rect, box };
+    desktop.setPointerCapture(event.pointerId);
+  });
+  desktop.addEventListener('pointermove', event => {
+    if (!selection) return;
+    const x = Math.max(0, Math.min(selection.rect.width, event.clientX - selection.rect.left));
+    const y = Math.max(0, Math.min(selection.rect.height, event.clientY - selection.rect.top));
+    const left = Math.min(selection.startX, x);
+    const top = Math.min(selection.startY, y);
+    const width = Math.abs(x - selection.startX);
+    const height = Math.abs(y - selection.startY);
+    Object.assign(selection.box.style, { left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px` });
+    const selectionRect = selection.box.getBoundingClientRect();
+    document.querySelectorAll('.desktop-icon').forEach(icon => {
+      const visibleParts = [icon.querySelector('img'), icon.querySelector('span')].filter(Boolean);
+      const overlaps = visibleParts.some(part => {
+        const partRect = part.getBoundingClientRect();
+        const overlapWidth = Math.min(selectionRect.right, partRect.right) - Math.max(selectionRect.left, partRect.left);
+        const overlapHeight = Math.min(selectionRect.bottom, partRect.bottom) - Math.max(selectionRect.top, partRect.top);
+        return overlapWidth > 1 && overlapHeight > 1;
+      });
+      icon.classList.toggle('selected', overlaps);
+    });
+  });
+  const finish = () => {
+    selection?.box.remove();
+    selection = null;
+  };
+  desktop.addEventListener('pointerup', finish);
+  desktop.addEventListener('pointercancel', finish);
+  desktop.addEventListener('lostpointercapture', finish);
+  desktop.addEventListener('dragstart', event => {
+    if (!event.target.closest('.window')) event.preventDefault();
+  });
+  desktop.addEventListener('selectstart', event => {
+    if (!event.target.closest('.window, input, textarea, [contenteditable="true"]')) event.preventDefault();
+  });
+  window.addEventListener('blur', finish);
+}
+
 buildLaunchers();
+initDesktopSelection();
 tick();
 setInterval(tick, 1000);
 showClippy('welcome');
@@ -662,7 +906,7 @@ addEventListener('load', () => {
     const boot = document.querySelector('#boot-screen');
     boot.style.opacity = '0';
     setTimeout(() => boot.remove(), 450);
-  }, 850);
+  }, 1800);
   const initialApp = location.hash.slice(1);
-  if (APPS[initialApp]) setTimeout(() => openApp(initialApp), 950);
+  if (APPS[initialApp]) setTimeout(() => openApp(initialApp), 1900);
 });
