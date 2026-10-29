@@ -155,7 +155,7 @@ function externalLink(href, label, className = '') {
 }
 
 function explorerShell(title, lead, content, taskLinks = []) {
-  const nav = taskLinks.map(item => item.href
+  const nav = `<button type="button" data-open="computer">My Computer</button>` + taskLinks.filter(item => item.app !== 'computer').map(item => item.href
     ? `<button type="button" data-href="${item.href}">${item.label}</button>`
     : `<button type="button" data-open="${item.app}">${item.label}</button>`).join('');
   const details = title === 'Local Disk (C:)'
@@ -163,7 +163,7 @@ function explorerShell(title, lead, content, taskLinks = []) {
     : `${title}<br>Portfolio folder`;
   return `<div class="explorer">
     <aside class="explorer-sidebar">
-      <section class="side-card"><h3>System Tasks</h3><nav>${nav || '<button type="button" data-open="computer">View system information</button>'}</nav></section>
+      <section class="side-card"><h3>System Tasks</h3><nav>${nav}</nav></section>
       <section class="side-card"><h3>Details</h3><p>${details}</p></section>
     </aside>
     <div class="explorer-main"><h2>${title}</h2><p class="lead">${lead}</p>${content}</div>
